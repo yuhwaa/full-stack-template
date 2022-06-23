@@ -1,16 +1,17 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const { sendFile } = require('express/lib/response')
+// const { sendFile } = require('express/lib/response')
 const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
 const PORT = 8000
+
 let db,
     dbConnectionString = process.env.DB_STRING,
     dbName = 'sample_mflix',
     collection
 
-MongoClient.connect(dbConnectionString)
+    MongoClient.connect(dbConnectionString)
     .then(client => {
         console.log(`Connected to Database`)
         db = client.db(dbName)
@@ -23,13 +24,11 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
 
-app.get('/', async (req,res) => {
-    try{ 
-        res.render('index.ejs')
-
+app.get('/', async (request, response) => {
+    try {
+        response.render('index.ejs')
     } catch (error) {
-        res.status(500).send({message: error.message})
-
+        response.status(500).send({message: error.message})
     }
 })
 
