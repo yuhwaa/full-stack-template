@@ -4,7 +4,7 @@ const cors = require('cors')
 // const { sendFile } = require('express/lib/response')
 const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
-const PORT = 8000
+// const PORT = 8000
 
 let db,
     dbConnectionString = process.env.DB_STRING,
